@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-     "dev": "node --watch app.js"
+    "dev": "node --watch app.js"
   },
   "keywords": [],
   "author": "",
@@ -11,6 +11,8 @@
   "description": "",
   "dependencies": {
     "@vitalets/google-translate-api": "^9.2.1",
+    "axios": "^1.7.9",
+    "bing-translate-api": "^4.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

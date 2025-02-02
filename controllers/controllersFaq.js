@@ -75,4 +75,60 @@ exports.createFaqs = async(req,res)=>{
             message: err.message
     });
     }
-}
+};
+
+exports.updateFaqs = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { question, answer } = req.body;
+
+        const updatedFaq = await Faq.findByIdAndUpdate(
+            id,
+            { question, answer },
+            { new: true }
+        );
+
+        if (!updatedFaq) {
+            return res.status(404).json({
+                success: false,
+                message: "Faq not found",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Faq updated successfully",
+            data: updatedFaq,
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message,
+        });
+    }
+};
+
+exports.deleteFaqs = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const deletedFaq = await Faq.findByIdAndDelete(id);
+
+        if (!deletedFaq) {
+            return res.status(404).json({
+                success: false,
+                message: "Faq not found",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Faq deleted successfully",
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message,
+        });
+    }
+};
